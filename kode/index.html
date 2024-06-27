@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notepad App</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1>Notepad App</h1>
+    <div class="folders">
+        <button onclick="showFolder('ongoing')">Ongoing</button>
+        <button onclick="showFolder('finished')">Finished</button>
+        <button onclick="showFolder('watch-soon')">Watch Soon</button>
+    </div>
+
+    <div id="folder-contents" style="display: none;">
+        <div class="dropdown">
+            <select id="alphabet-dropdown">
+                <option value="">Select Alphabet</option>
+                <!-- Options A-Z will be populated by JavaScript -->
+            </select>
+        </div>
+
+        <div id="input-area">
+            <input type="text" id="string-input" placeholder="Enter text">
+            <input type="file" id="file-input">
+            <button onclick="addItem()">Add Item</button>
+        </div>
+
+        <div id="search-area">
+            <input type="text" id="search-input" placeholder="Search...">
+            <button onclick="searchItems()">Search</button>
+        </div>
+
+        <div id="item-list">
+            <!-- Items will be populated by JavaScript -->
+        </div>
+    </div>
+
+    <!-- Firebase SDKs -->
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-storage.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
