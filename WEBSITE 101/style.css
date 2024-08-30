@@ -1,0 +1,86 @@
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0;
+    padding: 20px;
+}
+
+h1 {
+    margin-bottom: 15px;
+}
+
+form {
+    display: flex;
+    flex-direction: column; /* Stack the elements vertically */
+    width: 300px; /* Set a width for the form, adjust as needed */
+    margin: 0 auto; /* Center the form on the page */
+}
+
+.form-group {
+    position: relative;
+    margin-bottom: 20px;
+}
+
+input {
+    width: 100%;
+    padding: 10px;
+    display: block;
+    border: 1px solid #ccc; /* Border for the input fields */
+    border-radius: 5px; /* Round the corners of the input fields */
+    font-size: 16px;
+    margin-bottom: 10px; /* Space between each input field */
+}
+
+input:focus {
+    outline: none;
+    border-bottom: 2px solid #4CAF50; /* Highlight the input field border on focus */
+}
+
+label {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    font-size: 16px;
+    color: #999;
+    transition: 0.2s ease all;
+    pointer-events: none; /* Prevent the label from being clicked */
+}
+
+input:focus ~ label,
+input:not(:placeholder-shown) ~ label {
+    top: -20px;
+    left: 10px;
+    font-size: 12px;
+    color: #4CAF50;
+}
+
+button {
+    padding: 10px;
+    font-size: 16px;
+    background-color: #4CAF50; /* Change the background color of the button */
+    color: white; /* Make the button text white */
+    border: none; /* Remove the default button border */
+    border-radius: 5px; /* Round the corners of the button */
+    cursor: pointer; /* Change the cursor to a pointer on hover */
+    width: 100%;
+    margin-top: 20px; /* Space between the last input field and the button */
+}
+
+button:hover {
+    background-color: #45a049; /* Darken the button color on hover */
+}
+
+.error-message {
+    display: none;
+    color: red;
+    font-size: 12px;
+    margin-top: 5px;
+}
+
+.password-hint {
+    color: #555;
+    font-size: 12px;
+    margin-top: 5px;
+}
