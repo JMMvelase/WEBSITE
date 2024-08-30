@@ -3,14 +3,61 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>webpage</title>
+    <title>Webpage</title>
     <link rel="stylesheet" href="home.css">
+    
+    <!-- Firebase Integration -->
+    <script type="module">
+      // Import the functions you need from the SDKs you need
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-app.js";
+      import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-auth.js";
+
+      // Your web app's Firebase configuration
+      const firebaseConfig = {
+        apiKey: "AIzaSyD8aUgQZGH-mpD6RMVSFGPHtDKsj4JD3UU",
+        authDomain: "lvl999.firebaseapp.com",
+        projectId: "lvl999",
+        storageBucket: "lvl999.appspot.com",
+        messagingSenderId: "421537934591",
+        appId: "1:421537934591:web:9f97c884ae2bac649730ca",
+        measurementId: "G-79VD61SH3R"
+      };
+
+      // Initialize Firebase
+      const app = initializeApp(firebaseConfig);
+      const auth = getAuth(app);
+
+      // Function to check authentication state
+      onAuthStateChanged(auth, (user) => {
+        if (user) {
+          const email = user.email;
+          const name = user.displayName || email.split('@')[0]; // Use email prefix if displayName is not set
+          document.getElementById('login-message').innerHTML = `Hello, ${name}!`;
+          document.getElementById('login-form').style.display = 'none'; // Hide the login form if the user is logged in
+          document.getElementById('sign-out-btn').style.display = 'block'; // Show the sign-out button
+        } else {
+          // No user is signed in, show the login form
+          document.getElementById('login-form').style.display = 'block';
+          document.getElementById('sign-out-btn').style.display = 'none'; // Hide the sign-out button
+        }
+      });
+
+      // Function to log out
+      function logout() {
+        signOut(auth).then(() => {
+          alert("You have been logged out.");
+          window.location.reload(); // Reload the page to reflect the change
+        }).catch((error) => {
+          alert("Error logging out: " + error.message);
+        });
+      }
+    </script>
 </head>
 <body>
    <div class="main">
       <div class="navbar">
           <div class="icon">
-             <h2 class="logo"> Forbidden</h2>
+             <h2 class="logo">Forbidden</h2>
           </div>
 
           <div class="menu">
@@ -19,45 +66,49 @@
                 <li><a href="#">About</a></li>
                 <li><a href="#">Service</a></li>
                 <li><a href="#">Design</a></li>
-                <li><a href="#">Contect</a></li>
+                <li><a href="#">Contact</a></li>
             </ul>
           </div>
           <div class="search">
-            <input class="srch" type="search" name="" placeholder="anime">
-            <a href="#"><button class="btn">search</button></a>
+            <input class="srch" type="search" placeholder="anime">
+            <button class="btn">search</button>
           </div>
-          <div class="content">
-             <h1> Web Design &<br><span>Development</span> <br>Course</h1>
-               <p class="par">Lorem ipsum dolor sit amet consectetur adipisicing elit.<br> 
-                Soluta magni ullam excepturi dolorem sunt in, eaque enim debitis porro praesentium,<br>
-                 quisquam saepe autem quaerat error explicabo, placeat iusto id modi?
-                </p>
-            
-             <button class="cn"><a href="#">JOIN US</a></button>
-             <div class="form">
-               <h2>Login Here</h2>
-               <input type="email" name="email" placeholder="enter email"/>
-               <input type="password" name="" placeholder="9a09fj"/>
-               <button class="btnn"><a href="#">Login </a> </button>
+      </div>
 
-               <p class="link">I don't have an account<br>
-               <a href="#">Sign up</a> here</a></p>
-
-               <p class="liw">Log in with</p>
-
-             
-
-             <div class="icons">
+      <div class="content">
+         <h1> My Anime <br><span> Watch </span> <br> List </h1>
+         <p class="par">Save all of your watched anime.<br> 
+            This can help you get your watchlist in order,<br>
+            and also share your watchlist with all your otaku friends.
+         </p>
+         <button class="cn" id="join-us-btn"><a href="#">JOIN US</a></button>
+         
+         <div class="form">
+            <h2 id="login-message">Login Here</h2>
+            <form id="login-form" action="your-login-endpoint" method="POST"> 
+                <input required type="email" id="email" name="email" placeholder="Enter email"/>
+                <input required type="password" id="password" name="password" placeholder="Enter password"/>
+                <button type="button" class="btnn" onclick="login()">Login</button>
+            </form>
+            <p class="link">I don't have an account<br>
+            <a href="signUp.html"> Sign up </a> here</p>
+            <p class="liw">Log in with</p>
+            <div class="icons">
                <a href="#"><ion-icon name="logo-facebook"></ion-icon></a>
                <a href="#"><ion-icon name="logo-instagram"></ion-icon></a>
                <a href="#"><ion-icon name="logo-twitter"></ion-icon></a>
                <a href="#"><ion-icon name="logo-google"></ion-icon></a>
                <a href="#"><ion-icon name="logo-skype"></ion-icon></a>
-           </div>
+            </div>
          </div>
-        </div>
+         <!-- Sign Out Button -->
+         <button id="sign-out-btn" style="display:none;" onclick="logout()">Sign Out</button>
       </div>
    </div>
-   <script src="https://unpkg.com/ionicons@5.4.0/dist/ionicons.js"></script>
+   <script src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js" type="module"></script>
+   <script src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+
+  
+
 </body>
 </html>
