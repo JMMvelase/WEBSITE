@@ -1,2 +1,3 @@
 # WEBSITE
-a website for school application set up
+small web frontend only, just for a starter
+
