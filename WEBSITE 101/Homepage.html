@@ -6,52 +6,6 @@
     <title>Webpage</title>
     <link rel="stylesheet" href="home.css">
     
-    <!-- Firebase Integration -->
-    <script type="module">
-      // Import the functions you need from the SDKs you need
-      import { initializeApp } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-app.js";
-      import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-auth.js";
-
-      // Your web app's Firebase configuration
-      const firebaseConfig = {
-        apiKey: "AIzaSyD8aUgQZGH-mpD6RMVSFGPHtDKsj4JD3UU",
-        authDomain: "lvl999.firebaseapp.com",
-        projectId: "lvl999",
-        storageBucket: "lvl999.appspot.com",
-        messagingSenderId: "421537934591",
-        appId: "1:421537934591:web:9f97c884ae2bac649730ca",
-        measurementId: "G-79VD61SH3R"
-      };
-
-      // Initialize Firebase
-      const app = initializeApp(firebaseConfig);
-      const auth = getAuth(app);
-
-      // Function to check authentication state
-      onAuthStateChanged(auth, (user) => {
-        if (user) {
-          const email = user.email;
-          const name = user.displayName || email.split('@')[0]; // Use email prefix if displayName is not set
-          document.getElementById('login-message').innerHTML = `Hello, ${name}!`;
-          document.getElementById('login-form').style.display = 'none'; // Hide the login form if the user is logged in
-          document.getElementById('sign-out-btn').style.display = 'block'; // Show the sign-out button
-        } else {
-          // No user is signed in, show the login form
-          document.getElementById('login-form').style.display = 'block';
-          document.getElementById('sign-out-btn').style.display = 'none'; // Hide the sign-out button
-        }
-      });
-
-      // Function to log out
-      function logout() {
-        signOut(auth).then(() => {
-          alert("You have been logged out.");
-          window.location.reload(); // Reload the page to reflect the change
-        }).catch((error) => {
-          alert("Error logging out: " + error.message);
-        });
-      }
-    </script>
 </head>
 <body>
    <div class="main">
