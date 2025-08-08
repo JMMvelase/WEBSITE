@@ -1,68 +1,91 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Webpage</title>
-    <link rel="stylesheet" href="home.css">
-    
+<html lang="en"><head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Forbidden • Anime Watch-List</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://rsms.me/">
+  <link href="https://rsms.me/inter/inter.css" rel="stylesheet">
+  <script src="https://unpkg.com/lucide@latest"></script>
 </head>
-<body>
-   <div class="main">
-      <div class="navbar">
-          <div class="icon">
-             <h2 class="logo">Forbidden</h2>
-          </div>
 
-          <div class="menu">
-            <ul>
-                <li><a href="#">Home</a></li>
-                <li><a href="#">About</a></li>
-                <li><a href="#">Service</a></li>
-                <li><a href="#">Design</a></li>
-                <li><a href="#">Contact</a></li>
-            </ul>
-          </div>
-          <div class="search">
-            <input class="srch" type="search" placeholder="anime">
-            <button class="btn">search</button>
-          </div>
+<body class="bg-[#0f1117] text-gray-200 font-inter antialiased selection:bg-blue-600/40">
+  <!-- NAV -->
+  <header class="sticky top-0 z-10 backdrop-blur bg-[#0f1117]/70">
+    <div class="max-w-7xl mx-auto flex items-center justify-between px-6 py-4">
+      <h1 class="text-2xl tracking-tight font-semibold text-blue-500">Forbidden</h1>
+
+      <nav class="hidden md:block">
+        <ul class="flex items-center space-x-8 text-sm">
+          <li><a href="#" class="hover:text-blue-400 transition">Home</a></li>
+          <li><a href="#" class="hover:text-blue-400 transition">About</a></li>
+          <li><a href="#" class="hover:text-blue-400 transition">Service</a></li>
+          <li><a href="#" class="hover:text-blue-400 transition">Design</a></li>
+          <li><a href="#" class="hover:text-blue-400 transition">Contact</a></li>
+        </ul>
+      </nav>
+
+      <div class="flex items-center space-x-2">
+        <div class="relative">
+          <input type="search" placeholder="anime" class="bg-[#1a1d24] pl-10 pr-3 py-2 rounded-md text-sm placeholder-gray-500 focus:ring-2 focus:ring-blue-500/50 focus:outline-none transition w-40 md:w-52">
+          <i data-lucide="search" stroke-width="1.5" class="w-4 h-4 absolute left-3 top-1/2 -translate-y-1/2 text-gray-500"></i>
+        </div>
+        <button class="md:hidden p-2 rounded hover:bg-white/5 transition" onclick="document.querySelector('nav').classList.toggle('hidden')">
+          <i data-lucide="menu" stroke-width="1.5" class="w-5 h-5"></i>
+        </button>
       </div>
+    </div>
+  </header>
 
-      <div class="content">
-         <h1> My Anime <br><span> Watch </span> <br> List </h1>
-         <p class="par">Save all of your watched anime.<br> 
-            This can help you get your watchlist in order,<br>
-            and also share your watchlist with all your otaku friends.
-         </p>
-         <button class="cn" id="join-us-btn"><a href="#">JOIN US</a></button>
-         
-         <div class="form">
-            <h2 id="login-message">Login Here</h2>
-            <form id="login-form" action="your-login-endpoint" method="POST"> 
-                <input required type="email" id="email" name="email" placeholder="Enter email"/>
-                <input required type="password" id="password" name="password" placeholder="Enter password"/>
-                <button type="button" class="btnn" onclick="login()">Login</button>
-            </form>
-            <p class="link">I don't have an account<br>
-            <a href="signUp.html"> Sign up </a> here</p>
-            <p class="liw">Log in with</p>
-            <div class="icons">
-               <a href="#"><ion-icon name="logo-facebook"></ion-icon></a>
-               <a href="#"><ion-icon name="logo-instagram"></ion-icon></a>
-               <a href="#"><ion-icon name="logo-twitter"></ion-icon></a>
-               <a href="#"><ion-icon name="logo-google"></ion-icon></a>
-               <a href="#"><ion-icon name="logo-skype"></ion-icon></a>
-            </div>
-         </div>
-         <!-- Sign Out Button -->
-         <button id="sign-out-btn" style="display:none;" onclick="logout()">Sign Out</button>
-      </div>
-   </div>
-   <script src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js" type="module"></script>
-   <script src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+  <!-- HERO -->
+  <section class="flex flex-col md:flex-row items-center md:items-start max-w-7xl mx-auto px-6 pt-20 pb-32">
+    <div class="flex-1 space-y-6">
+      <h2 class="text-5xl md:text-6xl font-semibold tracking-tight leading-tight">
+        My Anime <br>
+        <span class="text-blue-500">Watch</span> <br>
+        List
+      </h2>
+      <p class="text-gray-400 max-w-lg">
+        Save every series you’ve watched, keep future picks in order, and share your curated watch-list
+        with all your otaku friends.
+      </p>
 
-  
+      <a href="anime.html" class="inline-block mt-4 px-8 py-3 rounded-md bg-blue-600 hover:bg-blue-500 transition shadow
+                text-white font-medium focus:ring-2 focus:ring-blue-400/50">
+        JOIN&nbsp;US
+      </a>
+    </div>
 
+    <!-- LOGIN -->
+    <div class="w-full md:max-w-sm mt-16 md:mt-0 md:ml-20 bg-[#1a1d24]/60 border border-white/5 rounded-xl p-8 shadow-lg">
+      <h3 class="text-xl font-medium mb-6 text-gray-100">Login Here</h3>
+      <form id="login-form" class="space-y-4" action="#" method="POST">
+        <input required="" type="email" id="email" name="email" placeholder="Enter email" class="w-full bg-[#0f1117] border border-white/10 rounded-md py-2 px-3 text-sm
+                      placeholder-gray-600 focus:border-blue-500 focus:ring-2 focus:ring-blue-400/30 outline-none">
+        <input required="" type="password" id="password" name="password" placeholder="Enter password" class="w-full bg-[#0f1117] border border-white/10 rounded-md py-2 px-3 text-sm
+                      placeholder-gray-600 focus:border-blue-500 focus:ring-2 focus:ring-blue-400/30 outline-none">
+        <button type="button" onclick="login()" class="w-full bg-blue-600 hover:bg-blue-500 transition py-2 rounded-md font-medium">
+          Login
+        </button>
+      </form>
+
+      <button id="sign-out-btn" onclick="logout()" class="hidden mt-4 w-full bg-red-600/70 hover:bg-red-600 transition py-2 rounded-md font-medium">
+        Sign&nbsp;Out
+      </button>
+    </div>
+  </section>
+
+  <script>
+    lucide.createIcons();
+
+    // dummy auth demo
+    function login() {
+      document.getElementById('login-form').classList.add('hidden');
+      document.getElementById('sign-out-btn').classList.remove('hidden');
+    }
+    function logout() {
+      document.getElementById('login-form').classList.remove('hidden');
+      document.getElementById('sign-out-btn').classList.add('hidden');
+    }
+  </script>
 </body>
 </html>

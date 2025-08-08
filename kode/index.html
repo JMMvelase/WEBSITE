@@ -1,47 +1,127 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Notepad App</title>
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
-    <h1>Notepad App</h1>
-    <div class="folders">
-        <button onclick="showFolder('ongoing')">Ongoing</button>
-        <button onclick="showFolder('finished')">Finished</button>
-        <button onclick="showFolder('watch-soon')">Watch Soon</button>
+
+
+
+
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Forbidden • My Anime List</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://rsms.me/">
+  <link href="https://rsms.me/inter/inter.css" rel="stylesheet">
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+
+
+  <!-- HEADER -->
+  <header class="flex items-center justify-between mb-10">
+    <a href="homepage.html" class="text-blue-500 text-xl tracking-tight font-semibold hover:text-blue-400 transition">
+      Forbidden
+    </a>
+    <h1 class="text-2xl md:text-3xl font-semibold tracking-tight">Anime List Dashboard</h1>
+    <button class="p-2 rounded hover:bg-white/5 transition" onclick="toggleTheme()">
+      <i data-lucide="moon" stroke-width="1.5" class="w-5 h-5"></i>
+    </button>
+  </header>
+
+  <!-- FOLDERS -->
+  <section class="space-y-8 max-w-4xl mx-auto">
+    <div class="flex flex-wrap gap-4">
+      <button onclick="showFolder('ongoing')" class="px-5 py-2 rounded-md border border-white/10 hover:border-blue-500 hover:text-blue-400 transition">
+        Ongoing
+      </button>
+      <button onclick="showFolder('finished')" class="px-5 py-2 rounded-md border border-white/10 hover:border-blue-500 hover:text-blue-400 transition">
+        Finished
+      </button>
+      <button onclick="showFolder('watch-soon')" class="px-5 py-2 rounded-md border border-white/10 hover:border-blue-500 hover:text-blue-400 transition">
+        Watch&nbsp;List
+      </button>
     </div>
 
-    <div id="folder-contents" style="display: none;">
-        <div class="dropdown">
-            <select id="alphabet-dropdown">
-                <option value="">Select Alphabet</option>
-                <!-- Options A-Z will be populated by JavaScript -->
-            </select>
-        </div>
+    <!-- CONTENTS -->
+    <div id="folder-contents" class="hidden space-y-6">
+      <!-- Alphabet dropdown -->
+      <div>
+        <label for="alphabet-dropdown" class="block text-sm mb-1 text-gray-400">Filter by alphabet</label>
+        <select id="alphabet-dropdown" class="w-full bg-[#0f1117] border border-white/10 rounded-md py-2 px-3 text-sm
+                       focus:border-blue-500 focus:ring-2 focus:ring-blue-400/30 outline-none">
+          <option value="">All</option>
+        </select>
+      </div>
 
-        <div id="input-area">
-            <input type="text" id="string-input" placeholder="Enter text">
-            <input type="file" id="file-input">
-            <button onclick="addItem()">Add Item</button>
-        </div>
+      <!-- Input area -->
+      <div class="flex flex-col sm:flex-row gap-4">
+        <input id="string-input" type="text" placeholder="Enter anime title" class="flex-1 bg-[#0f1117] border border-white/10 rounded-md py-2 px-3 text-sm
+                      focus:border-blue-500 focus:ring-2 focus:ring-blue-400/30 outline-none">
+        <input id="file-input" type="file" class="flex-1 text-sm file:bg-blue-600 file:text-white file:border-0
+                      file:px-4 file:py-2 file:rounded-md file:mr-4 file:hover:bg-blue-500
+                      bg-[#0f1117] border border-white/10 rounded-md">
+        <button onclick="addItem()" class="px-6 py-2 rounded-md bg-blue-600 hover:bg-blue-500 transition">
+          Add&nbsp;Anime
+        </button>
+      </div>
 
-        <div id="search-area">
-            <input type="text" id="search-input" placeholder="Search...">
-            <button onclick="searchItems()">Search</button>
-        </div>
+      <!-- Search -->
+      <div class="flex gap-4">
+        <input id="search-input" type="text" placeholder="Search…" class="flex-1 bg-[#0f1117] border border-white/10 rounded-md py-2 px-3 text-sm
+                      focus:border-blue-500 focus:ring-2 focus:ring-blue-400/30 outline-none">
+        <button onclick="searchItems()" class="px-6 py-2 rounded-md border border-white/10 hover:border-blue-500 hover:text-blue-400 transition flex items-center gap-2">
+          <i data-lucide="search" stroke-width="1.5" class="w-4 h-4"></i>Search
+        </button>
+      </div>
 
-        <div id="item-list">
-            <!-- Items will be populated by JavaScript -->
-        </div>
+      <hr class="border-white/10">
+
+      <!-- Items list -->
+      <div id="item-list" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        <!-- Items populated by JS -->
+      </div>
     </div>
+  </section>
 
-    <!-- Firebase SDKs -->
-    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-storage.js"></script>
-    <script src="script.js"></script>
-</body>
-</html>
+  <!-- Firebase SDKs -->
+  <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-storage.js"></script>
+  <script src="script.js"></script>
+
+  <script>
+    lucide.createIcons();
+
+    // populate A-Z dropdown
+    const alpha = [...'ABCDEFGHIJKLMNOPQRSTUVWXYZ'];
+    const dropdown = document.getElementById('alphabet-dropdown');
+    alpha.forEach(l => {
+      const opt = document.createElement('option');
+      opt.value = l;
+      opt.textContent = l;
+      dropdown.appendChild(opt);
+    });
+
+    // Example local functions for UI demo
+    function showFolder() {
+      document.getElementById('folder-contents').classList.remove('hidden');
+    }
+    function addItem() {
+      const txt = document.getElementById('string-input').value.trim();
+      if (!txt) return;
+      const wrap = document.createElement('div');
+      wrap.className = 'p-4 bg-[#1a1d24]/60 border border-white/5 rounded-lg';
+      wrap.textContent = txt;
+      document.getElementById('item-list').appendChild(wrap);
+      document.getElementById('string-input').value = '';
+    }
+    function searchItems() {
+      const q = document.getElementById('search-input').value.toLowerCase();
+      const items = document.querySelectorAll('#item-list div');
+      items.forEach(el => {
+        el.style.display = el.textContent.toLowerCase().includes(q) ? '' : 'none';
+      });
+    }
+    // quick dark/light toggle demo
+    function toggleTheme() {
+      document.documentElement.classList.toggle('dark');
+    }
+  </script>
+
+</body></html>
